@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N&V — More Than Just Clothes</title>
+<meta name="description" content="N&V — Egyptian streetwear. More Than Just Clothes.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,Arial,sans-serif;background:#050505;color:#fff;line-height:1.5}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.header{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.9);backdrop-filter:blur(12px);border-bottom:1px solid #222}
+.nav{max-width:1200px;margin:auto;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 22px}
+.brand{font-size:26px;font-weight:900;letter-spacing:-2px}.brand span{color:#e50914}
+.navlinks{display:flex;gap:28px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.navlinks a:hover{color:#e50914}
+.cart{border:1px solid #333;padding:10px 14px;border-radius:2px;font-size:12px;font-weight:800}
+.hero{min-height:calc(100vh - 72px);display:grid;place-items:center;position:relative;overflow:hidden;border-bottom:1px solid #222}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#300 0,transparent 32%),linear-gradient(135deg,#080808,#020202)}
+.hero-content{position:relative;text-align:center;padding:80px 20px}
+.hero-logo{width:min(420px,78vw);margin:0 auto 28px;display:block;mix-blend-mode:screen}
+.kicker{font-size:11px;letter-spacing:5px;color:#aaa;margin-bottom:12px}
+h1{font-size:clamp(42px,8vw,86px);line-height:.9;letter-spacing:-5px;text-transform:uppercase}
+h1 span{color:#e50914}
+.sub{max-width:520px;margin:24px auto;color:#aaa;font-size:14px}
+.btn{display:inline-block;background:#e50914;color:#fff;border:0;padding:15px 28px;font-size:12px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:.2s}
+.btn:hover{background:#fff;color:#000;transform:translateY(-2px)}
+.section{max-width:1200px;margin:auto;padding:90px 22px}
+.section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:32px}
+.section h2{font-size:38px;letter-spacing:-2px;text-transform:uppercase}
+.section-head p{color:#888;font-size:12px}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.product{background:#0c0c0c;border:1px solid #1e1e1e;transition:.25s}
+.product:hover{border-color:#444;transform:translateY(-4px)}
+.pic{aspect-ratio:4/5;background:linear-gradient(145deg,#171717,#070707);display:grid;place-items:center;position:relative;overflow:hidden}
+.pic:after{content:"N&V";font-size:70px;font-weight:900;color:#161616;transform:rotate(-15deg)}
+.tag{position:absolute;top:12px;left:12px;background:#e50914;padding:6px 9px;font-size:9px;font-weight:900;letter-spacing:1px;z-index:2}
+.info{padding:17px}.name{font-weight:800;font-size:14px}.price{color:#aaa;margin-top:5px;font-size:13px}.add{margin-top:15px;width:100%;padding:11px;background:#fff;color:#000;border:0;font-size:11px;font-weight:900;cursor:pointer}.add:hover{background:#e50914;color:#fff}
+.banner{margin-top:30px;background:#e50914;padding:42px;text-align:center}.banner h3{font-size:clamp(28px,5vw,54px);letter-spacing:-3px;text-transform:uppercase}.banner p{margin:8px 0 20px;font-size:12px}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.about-art{min-height:350px;background:#0a0a0a;border:1px solid #222;display:grid;place-items:center}.about-art img{width:70%;max-width:330px}.about p{color:#999;font-size:14px;max-width:520px}.facts{display:flex;gap:30px;margin-top:30px}.fact strong{font-size:28px}.fact small{display:block;color:#777;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+.footer{border-top:1px solid #222;padding:40px 22px;color:#777;text-align:center;font-size:11px}.footer b{color:#fff}
+.drawer{position:fixed;right:-390px;top:0;width:min(390px,100%);height:100%;background:#0a0a0a;border-left:1px solid #333;z-index:50;padding:25px;transition:.3s}.drawer.open{right:0}.drawer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px}.close{background:none;border:0;color:#fff;font-size:25px;cursor:pointer}.cart-item{border-bottom:1px solid #222;padding:15px 0;display:flex;justify-content:space-between;font-size:13px}.total{display:flex;justify-content:space-between;margin:25px 0;font-weight:900}.empty{color:#777;font-size:13px}
+@media(max-width:800px){.navlinks{display:none}.products{grid-template-columns:repeat(2,1fr)}.about{grid-template-columns:1fr}.section{padding:65px 16px}.section h2{font-size:30px}.facts{gap:18px}}
+@media(max-width:450px){.products{gap:10px}.info{padding:12px}.pic:after{font-size:50px}}
+</style>
+</head>
+<body>
+<header class="header">
+<nav class="nav">
+<a class="brand" href="#">N<span>&</span>V</a>
+<div class="navlinks"><a href="#shop">Shop</a><a href="#new">New Drop</a><a href="#about">About</a></div>
+<button class="cart" onclick="toggleCart()">CART (<span id="count">0</span>)</button>
+</nav>
+</header>
+
+<section class="hero">
+<div class="hero-content">
+<div class="kicker">EST. 2026 — EGYPT</div>
+<img class="hero-logo" src="nv-brand.png" alt="N&V logo">
+<h1>MORE THAN <span>JUST</span> CLOTHES</h1>
+<p class="sub">A new Egyptian streetwear identity built around bold silhouettes, clean details and a different attitude.</p>
+<a class="btn" href="#shop">Shop the drop</a>
+</div>
+</section>
+
+<section class="section" id="new">
+<div class="section-head"><div><p>01 / LATEST</p><h2>New Drop</h2></div><p>Designed in Egypt</p></div>
+<div class="banner"><h3>THE FIRST DROP</h3><p>Limited pieces. Built for everyday street style.</p><a class="btn" href="#shop" style="background:#000;color:#fff">Explore</a></div>
+</section>
+
+<section class="section" id="shop">
+<div class="section-head"><div><p>02 / STORE</p><h2>Shop N&V</h2></div><p>Replace these demo products with your real inventory</p></div>
+<div class="products" id="products"></div>
+</section>
+
+<section class="section" id="about">
+<div class="about">
+<div class="about-art"><img src="nv-brand.png" alt="N&V"></div>
+<div>
+<p>ABOUT N&V</p><h2 style="margin:10px 0 20px">BUILT DIFFERENT.</h2>
+<p>N&V is a streetwear concept from Egypt focused on strong graphics, versatile pieces and a clean black, white and red identity. This starter site is ready to be customized with your real products, prices, sizes, delivery and payment details.</p>
+<div class="facts"><div class="fact"><strong>2026</strong><small>Founded</small></div><div class="fact"><strong>EGY</strong><small>Based in</small></div><div class="fact"><strong>N&V</strong><small>Identity</small></div></div>
+</div>
+</div>
+</section>
+
+<footer class="footer"><b>N&V</b> — MORE THAN JUST CLOTHES · EGYPT · 2026</footer>
+
+<aside class="drawer" id="drawer">
+<div class="drawer-head"><h3>YOUR CART</h3><button class="close" onclick="toggleCart()">×</button></div>
+<div id="cartItems" class="empty">Your cart is empty.</div>
+<div class="total"><span>TOTAL</span><span id="total">EGP 0</span></div>
+<button class="btn" style="width:100%" onclick="checkout()">Order via WhatsApp</button>
+</aside>
+
+<script>
+const products=[
+{name:"N&V Oversized Tee",price:650},
+{name:"N&V Wide Leg Pants",price:950},
+{name:"N&V Essential Tee",price:550},
+{name:"N&V Signature Hoodie",price:1200}
+];
+let cart=[];
+const productsEl=document.getElementById('products');
+products.forEach((p,i)=>{
+productsEl.innerHTML+=`<article class="product"><div class="pic">${i===0?'<span class="tag">NEW</span>':''}</div><div class="info"><div class="name">${p.name}</div><div class="price">EGP ${p.price.toLocaleString()}</div><button class="add" onclick="addToCart(${i})">ADD TO CART</button></div></article>`;
+});
+function addToCart(i){cart.push(products[i]);renderCart();toggleCart(true)}
+function renderCart(){
+document.getElementById('count').textContent=cart.length;
+const el=document.getElementById('cartItems');
+if(!cart.length){el.className='empty';el.innerHTML='Your cart is empty.'}
+else{el.className='';el.innerHTML=cart.map((x,i)=>`<div class="cart-item"><span>${x.name}</span><span>EGP ${x.price.toLocaleString()}</span></div>`).join('')}
+document.getElementById('total').textContent='EGP '+cart.reduce((a,b)=>a+b.price,0).toLocaleString();
+}
+function toggleCart(force){document.getElementById('drawer').classList.toggle('open',force===true?true:undefined)}
+function checkout(){
+if(!cart.length){alert('Add a product first.');return}
+const text='Hello N&V! I want to order: '+cart.map(x=>x.name).join(', ')+' — Total EGP '+cart.reduce((a,b)=>a+b.price,0);
+window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank');
+}
+</script>
+</body>
+</html>
